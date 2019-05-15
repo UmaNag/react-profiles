@@ -1,9 +1,9 @@
 # React Weather Demo App
 
 ## To Get Started
-clone repo
-npm install
-npm start
+- clone repo
+- npm install
+- npm start
 
 Get weather.
 
