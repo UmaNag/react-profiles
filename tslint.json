@@ -1,0 +1,30 @@
+{
+    "extends": ["tslint:recommended", "tslint-react"],
+    "linterOptions": {
+      "exclude": ["config/**/*.js", "node_modules/**/*.ts", "build/**"]
+    },
+    "rules": {
+      "no-inferrable-types": false,
+      "no-import-side-effect": [true, { "ignore-module": "(\\.html|\\.css)$" }],
+      "completed-docs": true,
+      "typedef": [true, "call-signature", "arrow-call-signature", "parameter", "arrow-parameter", "property-declaration", "variable-declaration", "member-variable-declaration"],
+      "no-return-await": true,
+      "no-redundant-jsdoc": true,
+      "member-ordering": [
+        true,
+        {
+          "order": "statics-first",
+          "alphabetize": true
+        }
+      ],
+      "no-magic-numbers": true,
+      "no-unsafe-any": true,
+      "no-boolean-literal-compare": true,
+      "prefer-readonly": true,
+      "indent": [true, "spaces", 2],
+      "quotemark": [
+        true,
+        "single"
+      ],
+    }
+  }
