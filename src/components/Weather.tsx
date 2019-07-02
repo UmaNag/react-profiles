@@ -1,8 +1,7 @@
-import React from "react";
-
 import Form from './Form';
-import Titles from './Titles';
 import getData from '../api/ApiService';
+import React from "react";
+import Titles from './Titles';
 
 interface WeatherDetail {
   temperature: string,
@@ -13,7 +12,7 @@ interface WeatherDetail {
   error: string
 }
 
-const Api_Key = "8d2de98e089f1c28e1a22fc19a24ef04";
+const apiKey = "8d2de98e089f1c28e1a22fc19a24ef04";
 
 class Weather extends React.Component<{}, WeatherDetail> {
   constructor(props: WeatherDetail) {
@@ -27,27 +26,6 @@ class Weather extends React.Component<{}, WeatherDetail> {
       error: ''
     };
     this.getWeather = this.getWeather.bind(this);
-  }
-
-  private async getWeather(e: any): Promise<any> {
-    const city = e.target.elements.city.value;  
-    const country = e.target.elements.country.value;
-    e.preventDefault();   
-    const response = await getData(city, country, Api_Key);
-    if (city && country) {
-      this.setState({
-        temperature: response.main.temp,
-        city: response.name,
-        country: response.sys.country,
-        humidity: response.main.humidity,
-        description: response.weather[0].description,
-        error: ""
-      })
-    } else {
-      this.setState({
-        error: "Please input search values..."
-      })
-    }
   }
 
   render() {
@@ -66,6 +44,27 @@ class Weather extends React.Component<{}, WeatherDetail> {
     </div>
     </div>
     )
+  }
+
+  private async getWeather(e: any): Promise<any> {
+    const city = e.target.elements.city.value;  
+    const country = e.target.elements.country.value;
+    e.preventDefault();   
+    const response = await getData(city, country, apiKey);
+    if (city && country) {
+      this.setState({
+        temperature: response.main.temp,
+        city: response.name,
+        country: response.sys.country,
+        humidity: response.main.humidity,
+        description: response.weather[0].description,
+        error: ""
+      })
+    } else {
+      this.setState({
+        error: "Please input search values..."
+      })
+    }
   }
 }
 

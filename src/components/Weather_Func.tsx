@@ -2,9 +2,9 @@ import React from "react";
 import getData from "../api/ApiService";
 import ShowWeather from "./ShowWeather";
 
-const Api_Key = "8d2de98e089f1c28e1a22fc19a24ef04";
+const apiKey = "8d2de98e089f1c28e1a22fc19a24ef04";
 
-const Weather_Func = () => {
+const WeatherFunc = () => {
   const [result, setResult] = React.useState({
     temperature: "",
     city: "",
@@ -18,7 +18,7 @@ const Weather_Func = () => {
 
   const getWeather = async (e: any) => {
     e.preventDefault();
-    const result = await getData(city, country, Api_Key);
+    const result = await getData(city, country, apiKey);
     setResult({
       temperature: result.main.temp,
       city: result.name,
@@ -52,4 +52,4 @@ const Weather_Func = () => {
   );
 }
 
-export default Weather_Func;
+export default WeatherFunc;
