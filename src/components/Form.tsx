@@ -4,7 +4,7 @@ interface IGetWeather {
   getWeather(e: React.FormEvent<HTMLFormElement>): Promise<any>
 } 
 
-const Form: React.FunctionComponent<IGetWeather> = ({getWeather}) => {
+export const Form: React.FunctionComponent<IGetWeather> = ({getWeather}) => {
   return (
     <form onSubmit={getWeather}>
       <input type="text" name="city" placeholder="City..." />
@@ -13,5 +13,3 @@ const Form: React.FunctionComponent<IGetWeather> = ({getWeather}) => {
     </form>
   )
 }
-
-export default Form;

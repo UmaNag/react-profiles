@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-import ShowWeather from "./components/ShowWeather";
+import React, { useState } from "react";
+import { ShowWeather } from "./components/ShowWeather";
 import "./App.css";
-import Form from "./components/Form";
-import getData from './api/ApiService';
+import { Form } from "./components/Form";
+import { getData } from './api/ApiService';
 
 const apiKey = "8d2de98e089f1c28e1a22fc19a24ef04";
 
