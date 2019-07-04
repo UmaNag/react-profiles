@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { ShowWeather } from './components/ShowWeather';
 import './App.css';
 import { WeatherForm } from './components/Form';
@@ -8,7 +8,7 @@ const apiKey = '8d2de98e089f1c28e1a22fc19a24ef04';
 
 export const App: React.FunctionComponent = () => {
 
-  const [res, setResult] = React.useState({
+  const [res, setResult] = useState({
     temperature: '',
     city: '',
     country: '',
