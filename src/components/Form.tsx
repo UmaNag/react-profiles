@@ -1,8 +1,12 @@
 import React from "react";
 
-const Form = (props: any) => {
+interface IGetWeather {
+  getWeather(e: React.FormEvent<HTMLFormElement>): Promise<any>
+} 
+
+const Form: React.FunctionComponent<IGetWeather> = ({getWeather}) => {
   return (
-    <form onSubmit={props.loadWeather}>
+    <form onSubmit={getWeather}>
       <input type="text" name="city" placeholder="City..." />
       <input type="text" name="country" placeholder="Country..." />
       <button>Get Weather</button>

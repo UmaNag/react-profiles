@@ -1,13 +1,25 @@
 import React from "react";
 
-const ShowWeather = (props: any) => {
+interface IWeatherProps {
+  city: string;
+  country: string;
+  temperature: string;
+  humidity: string;
+  description: string;
+}
+
+const ShowWeather: React.FunctionComponent<IWeatherProps> = ({
+  city, 
+  country, 
+  temperature, 
+  humidity, 
+  description}) => {
   return (
     <div id="weather-results">
-      {props.city && props.country && <p>Location: {props.city}, {props.country}</p>}
-      {props.temperature && <p>Temperature: {props.temperature}</p>}
-      {props.humidity && <p>Humidity: {props.humidity}</p>}
-      {props.description && <p>Conditions: {props.description}</p>}
-      {props.error && <p>{props.error}</p>}
+      {city && country && <p>Location: {city}, {country}</p>}
+      {temperature && <p>Temperature: {temperature}C</p>}
+      {humidity && <p>Humidity: {humidity}</p>}
+      {description && <p>Conditions: {description}</p>}
     </div>
   )
 }
