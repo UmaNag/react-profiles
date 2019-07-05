@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShowWeather } from './components/ShowWeather';
 import './App.css';
 import { WeatherForm } from './components/Form';
@@ -16,23 +16,35 @@ export const App: React.FunctionComponent = () => {
     description: '',
   });
 
-  const getWeather = async (e: React.FormEvent<HTMLFormElement>) => {
-    const city = e.target[0].value;
-    const country = e.target[1].value;
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getData(city, country, apiKey);
+      if (res !== undefined) {
+        setResult({
+          temperature: res.main.temp,
+          city: res.name,
+          country: res.sys.country,
+          humidity: res.main.humidity,
+          description: res.weather[0].description,
+        });
+      }
+    };
+    fetchData();
+  }, [city]);
+
+  const setValues = async (e: React.FormEvent<HTMLFormElement>) => {
+    setCity(e.target[0].value);
+    setCountry(e.target[1].value);
     e.preventDefault();
-    const res = await getData(city, country, apiKey);
-    setResult({
-      temperature: res.main.temp,
-      city: res.name,
-      country: res.sys.country,
-      humidity: res.main.humidity,
-      description: res.weather[0].description,
-    });
   };
+
   return (
     <div id="main-container">
       <h1>Simple React Weather App</h1>
-      <WeatherForm getWeather={getWeather} />
+      <WeatherForm setValues={setValues} />
       <ShowWeather {...res} />
     </div>
   );
