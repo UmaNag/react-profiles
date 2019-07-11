@@ -10,6 +10,6 @@ export const WeatherForm: React.FunctionComponent<ISetValues> = ({setValues}) =>
       <input type="text" name="city" id="city" placeholder="City..." />
       <input type="text" name="country" id="country" placeholder="Country..." />
       <button>Get Weather</button>
-    </form>
+    </form> 
   );
 };
