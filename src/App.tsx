@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ShowWeather } from './components/ShowWeather';
 import './App.css';
 import { WeatherForm } from './components/Form';
@@ -14,32 +14,46 @@ export const App: React.FunctionComponent = () => {
     country: '',
     humidity: '',
     description: '',
+    icon: ''
   });
 
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
+  const [params, setParams] = useState({
+    city: '',
+    country: ''
+  });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await getData(city, country, apiKey);
-      if (res !== undefined) {
-        setResult({
-          temperature: res.main.temp,
-          city: res.name,
-          country: res.sys.country,
-          humidity: res.main.humidity,
-          description: res.weather[0].description,
-        });
+  useEffect(
+    () => {
+      const fetchData = async () => {
+        const res = await getData(params.city, params.country, apiKey);
+        if (res !== undefined) {
+          setResult({
+            temperature: res.main.temp,
+            city: res.name,
+            country: res.sys.country,
+            humidity: res.main.humidity,
+            description: res.weather[0].description,
+            icon: res.weather[0].icon
+          });
+        }
+      };
+      if (params.city !== '' && params.country !== '') {
+        fetchData();
       }
-    };
-    fetchData();
-  }, [city]);
+    }, 
+    [params]
+  );
 
-  const setValues = async (e: React.FormEvent<HTMLFormElement>) => {
-    setCity(e.target[0].value);
-    setCountry(e.target[1].value);
-    e.preventDefault();
-  };
+  const setValues = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      setParams({
+        city: e.target[0].value,
+        country: e.target[1].value
+      });
+      e.preventDefault();
+    }, 
+    []
+  );
 
   return (
     <div id="main-container">

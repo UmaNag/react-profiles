@@ -1,10 +1,10 @@
 import React from 'react';
 
 interface ISetValues {
-  setValues(e: React.FormEvent<HTMLFormElement>): Promise<any>;
+  setValues(e: React.FormEvent<HTMLFormElement>): void;
 }
 
-export const WeatherForm: React.FunctionComponent<ISetValues> = ({ setValues }) => {
+export const WeatherForm: React.FunctionComponent<ISetValues> = ({setValues}) => {
   return (
     <form onSubmit={setValues}>
       <input type="text" name="city" placeholder="City..." />

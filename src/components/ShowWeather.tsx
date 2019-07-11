@@ -6,6 +6,7 @@ interface IWeatherProps {
   description: string;
   humidity: string;
   temperature: string;
+  icon: string;
 }
 
 export const ShowWeather: React.FunctionComponent<IWeatherProps> = ({
@@ -13,13 +14,15 @@ export const ShowWeather: React.FunctionComponent<IWeatherProps> = ({
   country,
   temperature,
   humidity,
-  description}) => {
+  description,
+  icon}) => {
   return (
       <div id="weather-results">
-        {city && country && <p>Location: {city}, {country}</p>}
-        {temperature && <p>Temperature: {Math.round(Number(temperature))}C</p>}
-        {humidity && <p>Humidity: {humidity}</p>}
-        {description && <p>Conditions: {description}</p>}
+        {city && country && <p className="location">Location: {city}, {country}</p>}
+        {temperature && <p className="temp">Temperature: {Math.round(Number(temperature))}C</p>}
+        {humidity && <p className="humidity">Humidity: {humidity}</p>}
+        {description && <p className="desc">Conditions: {description}</p>}
+        {icon && <img src={`http://openweathermap.org/img/w/${icon}.png`} />}
       </div>
   );
 };
