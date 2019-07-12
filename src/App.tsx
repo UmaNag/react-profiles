@@ -52,7 +52,7 @@ export const App: React.FunctionComponent = () => {
       });
       e.preventDefault();
     }, 
-    []
+    [params]
   );
 
   return (

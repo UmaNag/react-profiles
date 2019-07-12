@@ -10,7 +10,7 @@ describe('ShowWeather Tests', () => {
       temperature: '20',
       humidity: '60',
       description: 'Mostly cloudy',
-      icon: '04d'
+      icon: '04d' 
     };
     const component = mount(<ShowWeather {...weatherInfo} />);
     const location = component.find('.location');
